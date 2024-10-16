@@ -1,0 +1,21 @@
+How to create an unit test:
+
+(1) Create a console application. 
+• Create a new project -> select console application ->rename.
+
+(2) Add a class 
+• Right click on filename (Solution Explorer -> add -> class
+• Give name to the class (.cs)
+
+(3) To check whether Nunit package is installed ar not.
+If not then follow steps given below:
+• Tools -> NuGet package Manager -> Manage NuGet package for solutions -> Browse -> search for "Nunit" -> click on Nunit Tick your project file -> click on Install -> Close "NuGet Solution" Tab. Back to the code file.
+• Right click on filename (solution Explorer) -> Click on Rebuild.
+• Extensions -> Manage Extensions -> Online -> search for "Nunit" -> Install "Nunit 3 Test Adapter Cversion/3.4.1)
+• The downloading will be scheduled. To install just save all the files and close the visual Studio. You will get pop-up to install the Extension: click on "modify".
+• Restart Visual Studio Code and open the previously created project. 
+
+(4) Add another class
+• Right click on filename (Solution Explorer) -> add -> dass.
+• write code. 
+(5) Test -> Test Explorer -> Run All Tests
