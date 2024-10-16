@@ -1,4 +1,4 @@
-##Constructor Injection
+//Constructor Injection
 
 using System;
 
@@ -43,7 +43,7 @@ Console.ReadKey();
 }
 }
 
-##Dependency injection
+//Dependency injection
 
 
 using System;
@@ -84,7 +84,7 @@ Console.ReadKey();
 }
 }
 
-##Method Injection
+//Method Injection
 
 using System;
 using System.Collections.Generic;
