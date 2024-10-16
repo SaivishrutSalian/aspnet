@@ -1,0 +1,43 @@
+Steps
+1.	Open VS 2019 -> Create New project -> Set the language as C# -> Search for Windows Forms App (.NET framework) -> Create the application.
+
+2.	Right Click on Folder -> Add -> New Item -> Data -> Service Based Database -> Provide a name and then click on Add.
+
+3.	Go to View and Click on Server Explorer -> Right Click on tables and Click on Add a Table -> Create the table by providing the required name and their datatype. The script would look like this:
+
+CREATE TABLE [dbo].[Customers]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [FullName] NCHAR(100) NULL, 
+    [Email] VARCHAR(150) NULL, 
+    [Address] NVARCHAR(150) NULL, 
+    [Phone] VARCHAR(25) NULL, 
+    [Gender] BIT NULL
+)
+
+Rename the table name -> Update the table by clicking on Update and then Click on Update Database.
+4.	Go to View -> Other Windows -> Data Sources -> Click on Add New Data Source. (If Data Sources has nothing on it then save the application and restart the VS 2019) -> Click on Database 
+-> Dataset -> Click on “Show the connection string that you will save in the application”. Copy the below string in some other notepad file:
+
+Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True
+
+Then Provide a name -> Check on Table and Customers and Provide its name as ModelDataSet
+
+5.	In Data Sources Click on Edit DataSet with Designer and Keep it as it is -> In Data Sources Click on Customers Dropdown button and Click on Details 
+-> Inside Customers Click on Every Variables dropdown button and click on TextBox except for Gender, it should have Checkbox 
+-> Drag the Customer Icon and Drop it in Main Forms1 -> Delete the ID Variable and its TextBox from the Main View
+
+6.	Click on Customers Dropdown button and select DataGridView and drag the Customers below the already dragged Details Customers 
+-> Click on Gender’s Properties in Details and Change its Text as ?? and click on “Lighting type” button and Click or Double click on CheckedChanged
+
+7.	In Forms1.cs update the Gender part of the code as: 
+if (genderCheckBox.CheckState == CheckState.Checked)
+                genderCheckBox.Text = "Male";
+            else if (genderCheckBox.CheckState == CheckState.Unchecked)
+                genderCheckBox.Text = "Female";
+            else
+              genderCheckBox.Text = "??";
+
+8.	In the Forms1 properties Edit the Name as LocalDB and StartPosition as CenterScreen
+9.	In the ModelDataSet Edit the properties of ID: AutoIncrement as True and both the Seed and Step as 1.
+10.	 Run the Application
