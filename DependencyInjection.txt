@@ -1,0 +1,125 @@
+##Constructor Injection
+
+using System;
+
+namespace PropertyInjection
+{
+public interface IText
+{
+void Print();
+}
+
+class Format : IText
+{
+public void Print()
+{
+Console.WriteLine(&quot;Hello World!&quot;);
+}
+}
+
+public class ConstructorInjection
+{
+private IText _text;
+
+public ConstructorInjection(IText text)
+{
+_text = text;
+}
+
+public void Print()
+{
+_text.Print();
+}
+}
+
+class Program
+{
+static void Main(string[] args)
+{
+ConstructorInjection cs = new ConstructorInjection(new Format());
+cs.Print();
+Console.ReadKey();
+}
+}
+}
+
+##Dependency injection
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text;
+using System.Threading.Tasks;
+public interface INotificationAction
+{
+void ActOnNotification(string message);
+}
+class simple
+
+{
+INotificationAction task = null;
+public void notify(INotificationAction at, string messages)
+{
+this.task = at;
+task.ActOnNotification(messages);
+}
+}
+class EventLogWriter : INotificationAction
+{
+public void ActOnNotification(string message)
+{
+Console.WriteLine(&quot;Click on the bell icon to get notifications.&quot;);
+}
+}
+class Program
+{
+static void Main(String[] args)
+{
+EventLogWriter elw = new EventLogWriter();
+simple at = new simple();
+at.notify(elw, &quot;to logg&quot;);
+Console.ReadKey();
+}
+}
+
+##Method Injection
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text;
+using System.Threading.Tasks;
+public interface Iset
+{
+void print();
+}
+public class service : Iset
+{
+
+public void print()
+{
+Console.WriteLine(&quot;print....&quot;);
+}
+}
+public class client
+{
+private Iset _Iset;
+public void run(Iset serv)
+{
+this._Iset = serv;
+Console.WriteLine(&quot;start&quot;);
+this._Iset.print();
+}
+}
+class method
+{
+public static void Main()
+{
+client cn = new client();
+cn.run(new service());
+Console.ReadKey();
+}
+}
