@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace getDataFromJsonFile   //FileName
+{
+  public class Student
+  {
+    public string Name {get; set;}
+    public string Surname {get; set;}
+    public int Age {get; set;}
+    public List <String> Jobs {get; set;}
+  }
+  public class Root
+  {
+    public List<Student> Student {get; set;}
+  }
+  class Program
+  {
+    static void Main (String[] args)
+    {
+      string link = @"Link";
+      WebRequest request = WebRequest.Create(link);
+      WebResponse response = request.getResponse();
+
+      using (Stream dataStream = response.GetResponseStream)
+      {
+        StreamReader reader = new StreamReader(dataStream);
+        string responseFromServer = reader.ReadToEnd();
+        Root root = JsonConvert.DeserializeObject<Root>(responseFromServer);
+        foreach(Student s in root.Student)
+        {
+          Console.WriteLine(s.Name + " " + s.Age + " he works as:");
+          for (int i = 0; i<s.Jobs.Count; i++)
+          {
+            Console.WriteLine(s.Jobs[i]);
+          }
+        }
+      }
+      Console.ReadKey();
+    }
+  }
+}
