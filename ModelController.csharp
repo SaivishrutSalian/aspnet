@@ -1,0 +1,90 @@
+//Customer.cs 
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace URLRouting1.Models
+{
+    public class Customer
+    {
+        public int custId { get; set; }
+        public string Name { get; set; }
+        public string City { get; set; }
+    }
+}
+
+//CustomerController.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using URLRouting1.Models;
+namespace URLRouting1.Controllers
+{
+    public class CustomerController : Controller
+    {
+        // GET: Customer
+        public ActionResult Index()
+        {
+            Customer cust = new Customer()
+            {
+                custId = 1,
+                Name = "Saivishrut",
+                City = "Mumbai"
+            };
+            return View();
+        }
+    }
+}
+
+//Index.cshtml
+@model  URLRouting1.Models.Customer
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customer Information</h2>
+<table>
+    <tr>
+        <td>Customer_id</td>
+        <td>Customer_name</td>
+        <td>Customer_city</td>
+    </tr>
+    
+    <tr>
+        <td>@Model.custId</td>
+        <td>@Model.Name</td>
+        <td>@Model.City</td>
+    </tr>
+</table>
+
+//RouteConfig.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+
+namespace URLRouting1
+{
+    public class RouteConfig
+    {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Customer", action = "Index", id = UrlParameter.Optional }
+            );
+        }
+    }
+}
